@@ -17,6 +17,7 @@ services:
       retries: 20
 
   app:
+    image: ${VAULTIFY_IMAGE:-vaultify:local}
     build: .
     depends_on:
       db:

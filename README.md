@@ -74,6 +74,32 @@ docker compose down
 
 Do not use `docker compose down -v` unless all database data should be deleted.
 
+## Running a Prebuilt Image on a VPS
+
+Build and push the image from a development machine or CI:
+
+```sh
+podman build -t ghcr.io/dimas-ady/ef234301_webpro_q2:latest .
+podman push ghcr.io/dimas-ady/ef234301_webpro_q2:latest
+```
+
+On the VPS, copy `.env.example` to `.env`, set `VAULTIFY_APP_KEY`,
+`APP_PORT`, and `VAULTIFY_IMAGE`, then pull and start the production
+configuration:
+
+```sh
+podman-compose -f compose.yaml -f compose.production.yaml pull
+podman-compose -f compose.yaml -f compose.production.yaml up -d
+```
+
+This configuration uses the prebuilt image and does not run Maven or build the
+Dockerfile on the VPS. Check it with:
+
+```sh
+podman-compose -f compose.yaml -f compose.production.yaml ps
+podman-compose -f compose.yaml -f compose.production.yaml logs -f app
+```
+
 ## WAR Deployment on Tomcat
 
 Make sure MySQL is running, then set the same environment variables for the
