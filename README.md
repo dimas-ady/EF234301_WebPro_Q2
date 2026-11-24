@@ -16,6 +16,8 @@ generator.
 
 ## Deployment with Docker Compose
 
+The same Compose file works with Docker Compose and `podman-compose`.
+
 ### Preparation
 
 Generate an application key once:
