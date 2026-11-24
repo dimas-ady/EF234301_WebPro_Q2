@@ -31,7 +31,7 @@ passwords cannot be decrypted with a different key.
 
 ```sh
 cp .env.example .env
-# edit .env and set VAULTIFY_APP_KEY
+# edit .env, set VAULTIFY_APP_KEY, and optionally change APP_PORT
 docker compose up -d --build
 ```
 
@@ -42,8 +42,27 @@ docker compose ps
 docker compose logs -f app
 ```
 
-The application is available at <http://localhost:8080/vaultify/>. The database
+The application is available at
+`http://localhost:<APP_PORT>/vaultify/`, or at
+<http://localhost:8080/vaultify/> when using the default port. The database
 schema is created automatically when the application starts.
+
+### Choose the application port
+
+Set `APP_PORT` in `.env` before starting Docker Compose:
+
+```env
+APP_PORT=9090
+```
+
+Then recreate the application:
+
+```sh
+docker compose up -d --build
+```
+
+Open <http://localhost:9090/vaultify/>. `APP_PORT` changes the host port; the
+Tomcat port inside the container remains `8080`.
 
 Stop the application without deleting database data:
 
@@ -81,6 +100,18 @@ http://localhost:8080/vaultify/
 ```
 
 Database tables are created automatically when Tomcat deploys the application.
+
+To change the port for a standalone Tomcat deployment, edit the Tomcat
+`conf/server.xml` file and change the HTTP connector port, for example:
+
+```xml
+<Connector port="9090" protocol="HTTP/1.1"
+           connectionTimeout="20000"
+           redirectPort="8443" />
+```
+
+Restart Tomcat after changing `server.xml`, then use
+`http://localhost:9090/vaultify/`.
 
 ## Importing a Wordlist
 

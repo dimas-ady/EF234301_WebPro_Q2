@@ -29,7 +29,7 @@ services:
       DB_PASSWORD: secret
       VAULTIFY_APP_KEY: ${VAULTIFY_APP_KEY:?set VAULTIFY_APP_KEY in .env, see .env.example}
     ports:
-      - "8080:8080"
+      - "${APP_PORT:-8080}:8080"
 
 volumes:
   db-data:
