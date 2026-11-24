@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="400" viewBox="0 0 1400 400" role="img" aria-labelledby="title description">
+  <title id="title">Vaultify application architecture</title>
+  <desc id="description">Browser requests pass through servlet filters to Jakarta Servlets. Servlets render JSP views and use services and DAOs to access MySQL.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8.5" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#505050"/>
+    </marker>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; fill: #262626; }
+      .box { fill: #FAFAF8; stroke: #505050; stroke-width: 1.8; }
+      .title { font-size: 18px; font-weight: 700; }
+      .detail { font-size: 14px; font-weight: 400; fill: #4B4B4B; }
+      .edge-label { font-size: 12px; font-weight: 400; fill: #555555; }
+      .line { fill: none; stroke: #505050; stroke-width: 2; marker-end: url(#arrow); }
+      .branch { fill: none; stroke: #505050; stroke-width: 2; }
+    </style>
+  </defs>
+
+  <rect width="1400" height="400" fill="#FFFFFF"/>
+
+  <rect x="45" y="148" width="200" height="104" rx="8" class="box"/>
+  <text x="145" y="188" text-anchor="middle" class="title">Browser / User</text>
+  <text x="145" y="218" text-anchor="middle" class="detail">Web interface · generator JS</text>
+
+  <rect x="320" y="148" width="210" height="104" rx="8" class="box"/>
+  <text x="425" y="188" text-anchor="middle" class="title">Servlet Filters</text>
+  <text x="425" y="218" text-anchor="middle" class="detail">CSRF · Authentication</text>
+
+  <rect x="605" y="148" width="235" height="104" rx="8" class="box"/>
+  <text x="722.5" y="184" text-anchor="middle" class="title">Jakarta Servlets</text>
+  <text x="722.5" y="218" text-anchor="middle" class="detail">Login · Vault · Credentials</text>
+
+  <rect x="945" y="42" width="230" height="104" rx="8" class="box"/>
+  <text x="1060" y="83" text-anchor="middle" class="title">JSP / JSTL Views</text>
+  <text x="1060" y="113" text-anchor="middle" class="detail">Render application pages</text>
+
+  <rect x="945" y="254" width="230" height="104" rx="8" class="box"/>
+  <text x="1060" y="289" text-anchor="middle" class="title">Services / DAOs</text>
+  <text x="1060" y="317" text-anchor="middle" class="detail">Encryption · hashing</text>
+  <text x="1060" y="339" text-anchor="middle" class="detail">Wordlist · JDBC / HikariCP</text>
+
+  <rect x="1240" y="254" width="145" height="104" rx="8" class="box"/>
+  <text x="1312.5" y="285" text-anchor="middle" class="title">MySQL</text>
+  <text x="1312.5" y="310" text-anchor="middle" class="detail">users</text>
+  <text x="1312.5" y="330" text-anchor="middle" class="detail">credentials</text>
+  <text x="1312.5" y="350" text-anchor="middle" class="detail">password_wordlist</text>
+
+  <path d="M245 200 H320" class="line"/>
+  <path d="M530 200 H605" class="line"/>
+  <path d="M840 200 H880" class="branch"/>
+  <path d="M880 94 V306" class="branch"/>
+  <path d="M880 94 H945" class="line"/>
+  <path d="M880 306 H945" class="line"/>
+  <path d="M1175 306 H1240" class="line"/>
+
+  <text x="282" y="190" text-anchor="middle" class="edge-label">HTTP</text>
+  <text x="567" y="190" text-anchor="middle" class="edge-label">request</text>
+  <text x="910" y="84" text-anchor="middle" class="edge-label">render</text>
+  <text x="910" y="296" text-anchor="middle" class="edge-label">service call</text>
+  <text x="1207" y="296" text-anchor="middle" class="edge-label">JDBC</text>
+</svg>

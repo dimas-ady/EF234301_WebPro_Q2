@@ -10,6 +10,7 @@
     <meta name="csrf-token" content="${csrfToken}">
     <title><c:out value="${empty pageTitle ? 'Vaultify' : pageTitle}"/> &middot; Vaultify</title>
     <link rel="stylesheet" href="${ctx}/assets/app.css?v=20261124">
+    <link rel="stylesheet" href="${ctx}/assets/mobile-nav.css?v=20261125">
 </head>
 <body class="min-h-screen bg-stone-50 text-stone-900 antialiased">
 <div id="app-shell" class="min-h-screen">
