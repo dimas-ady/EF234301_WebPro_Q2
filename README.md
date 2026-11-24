@@ -129,6 +129,9 @@ http://localhost:8080/vaultify/
 
 Database tables are created automatically when Tomcat deploys the application.
 
+The production container deploys the WAR as `ROOT.war`, so a reverse proxy can
+serve the application directly at the domain root without a `/vaultify` path.
+
 To change the port for a standalone Tomcat deployment, edit the Tomcat
 `conf/server.xml` file and change the HTTP connector port, for example:
 

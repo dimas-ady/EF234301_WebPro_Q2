@@ -12,7 +12,7 @@ FROM docker.io/library/tomcat:10.1-jdk17-temurin
 
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-COPY --from=build /src/target/vaultify.war /usr/local/tomcat/webapps/vaultify.war
+COPY --from=build /src/target/vaultify.war /usr/local/tomcat/webapps/ROOT.war
 
 EXPOSE 8080
 
