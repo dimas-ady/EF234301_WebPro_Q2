@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+
+    <display-name>Vaultify</display-name>
+
+    <!-- Filters are declared here so the chain order is explicit. -->
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>com.vaultify.web.filter.EncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>methodOverrideFilter</filter-name>
+        <filter-class>com.vaultify.web.filter.MethodOverrideFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>methodOverrideFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>flashFilter</filter-name>
+        <filter-class>com.vaultify.web.filter.FlashFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>flashFilter</filter-name>
+        <url-pattern>/vault</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>flashFilter</filter-name>
+        <url-pattern>/vault/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>flashFilter</filter-name>
+        <url-pattern>/login</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>flashFilter</filter-name>
+        <url-pattern>/register</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>flashFilter</filter-name>
+        <url-pattern>/password-generator</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>csrfFilter</filter-name>
+        <filter-class>com.vaultify.web.filter.CsrfFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>csrfFilter</filter-name>
+        <url-pattern>/vault</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>csrfFilter</filter-name>
+        <url-pattern>/vault/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>csrfFilter</filter-name>
+        <url-pattern>/login</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>csrfFilter</filter-name>
+        <url-pattern>/register</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>csrfFilter</filter-name>
+        <url-pattern>/logout</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>csrfFilter</filter-name>
+        <url-pattern>/password-generator</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>authFilter</filter-name>
+        <filter-class>com.vaultify.web.filter.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>authFilter</filter-name>
+        <url-pattern>/vault</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>authFilter</filter-name>
+        <url-pattern>/vault/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>authFilter</filter-name>
+        <url-pattern>/password-generator</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>guestFilter</filter-name>
+        <filter-class>com.vaultify.web.filter.GuestFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>guestFilter</filter-name>
+        <url-pattern>/login</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>guestFilter</filter-name>
+        <url-pattern>/register</url-pattern>
+    </filter-mapping>
+
+    <session-config>
+        <session-timeout>120</session-timeout>
+        <cookie-config>
+            <http-only>true</http-only>
+        </cookie-config>
+    </session-config>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/views/errors/404.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>405</error-code>
+        <location>/WEB-INF/views/errors/405.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>419</error-code>
+        <location>/WEB-INF/views/errors/419.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/views/errors/500.jsp</location>
+    </error-page>
+</web-app>
